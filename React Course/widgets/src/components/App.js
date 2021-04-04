@@ -3,7 +3,10 @@ import Accordion from './Accordion/Accordion';
 import Search from './Search/Search';
 import Dropdown from './Dropdown/Dropdown';
 import Translate from './Translate/Translate';
+import Route from './Route/Route';
+import Header from './Header/Header';
 import './app.css';
+
 
 const items = [
     { title: 'What is React?', content: 'React is a front-end JavaScript framework' },
@@ -27,18 +30,25 @@ const options = [
     }
 ];
 
+
 const App = () => {
     const [selected, changeSelected] = useState(options[0]);
+
     return (
         <div className='page-container'>
-            {/* <Accordion className='accordion' items={items} /> */}
-            {/* <Search /> */}
-            {/* <Dropdown 
-                selected={selected} 
-                changeSelected={changeSelected} options={options} 
-                label='Select a color' 
-            /> */}
-            <Translate />
+            <Header />
+            <Route path='/'>
+                <Accordion className='accordion' items={items} />
+            </Route>
+            <Route path='/search'>
+                <Search />
+            </Route>
+            <Route path='/dropdown'>
+                <Dropdown selected={selected} changeSelected={changeSelected} options={options} label='Select a color' />
+            </Route>
+            <Route path='/translate'>
+                <Translate />
+            </Route>
         </div>
     );
 }
